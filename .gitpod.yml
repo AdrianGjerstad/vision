@@ -1,1 +1,15 @@
-{}
+ports:
+- port: 3000
+  onOpen: ignore
+
+tasks:
+- init: mkdir -p ~/tools
+        cd ~/tools
+        git clone git://github.com/mishoo/UglifyJS.git
+        mkdir -p ~/bin
+        cd ~/bin
+        ln -s ~/tools/UglifyJS/bin/uglifyjs
+        export PATH=~/bin:$PATH
+- openIn: right
+  name: Test Suite Server
+  command: python -m SimpleHTTPServer 3000
